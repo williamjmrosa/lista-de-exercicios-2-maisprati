@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debounce com Bootstrap</title>
+
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container{
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgb(4, 188, 89);
+        }
+
+        label{
+            text-align: center;
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .form-group{
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        #output{
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        input{
+            font-weight: bold;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center !important;
+            border: 2px solid #007BFF;
+        }
+
+        p{
+            text-align: center;
+            font-weight: bold;
+        }
+
+        h1{
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Teste de Debounce</h1>
+
+        <div class="form-group">
+            <label for="campoTexto">Campo de Texto</label>
+            <input type="text" id="campoTexto" placeholder="Digite seu texto aqui...">
+        </div>
+
+        <p>O texto final será exibido aqui (com debounce):</p>
+        <div id="output">
+            Aguardando sua digitação...
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="exercicio05.js">
+
+    </script>
+    <script>
+        const funcaoDebounce = debounce(ver, 300)
+
+        function ver(texto){
+            if(texto.length === 0){
+                $('#output').text("Aguardando sua digitação...")
+            }else{
+                $('#output').text(texto)        
+            }
+        }
+
+        $(document).ready(function(){
+            $('#campoTexto').on('input',function(){
+                let texto = $(this).val()
+                funcaoDebounce(texto)
+            })
+        })
+            
+        
+    </script>
+
+</body>
+</html>
